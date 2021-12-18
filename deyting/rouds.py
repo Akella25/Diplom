@@ -1,30 +1,8 @@
-from flask import Flask, request, render_template
-from flask_sqlalchemy import SQLAlchemy
-# from users import User, Person
-from datetime import datetime
+from flask import request, render_template
 from werkzeug.security import generate_password_hash, check_password_hash
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///person.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
-app.secret_key = 'dddd'
-
-
-class Users(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    login = db.Column(db.String, nullable=False)
-    password_hash = db.Column(db.String(100))
-    name = db.Column(db.String)
-    last_name = db.Column(db.String)
-    gender = db.Column(db.String)
-    date_birth = db.Column(db.Integer)
-    zodiac_sign = db.Column(db.String)
-    height = db.Column(db.Integer)
-    weight = db.Column(db.Integer)
-    date_registration = db.Column(db.DateTime, default=datetime.utcnow)
-
-
+from deyting import app, db
+from deyting.models import Users
 
 
 @app.route('/', methods=['POST', 'GET'])
