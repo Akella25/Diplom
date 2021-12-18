@@ -25,6 +25,8 @@ class Users(db.Model):
     date_registration = db.Column(db.DateTime, default=datetime.utcnow)
 
 
+
+
 @app.route('/', methods=['POST', 'GET'])
 def form_registration():
     if request.method == 'POST':
