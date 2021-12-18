@@ -26,7 +26,6 @@ class Users(db.Model):
 
 
 
-
 @app.route('/', methods=['POST', 'GET'])
 def form_registration():
     if request.method == 'POST':
