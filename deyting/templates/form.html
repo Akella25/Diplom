@@ -2,38 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Registr</title>
 </head>
 <body>
+    {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
 <div>
     <form method="post">
 
                 <label>Yor login</label>
         <input name="login" id="login"><br>
-                <label>Yor name</label>
 
-        <input name="name" id="name"><br>
-                <label>Yor last_name</label>
-
-        <input name="last_name" id="last_name"><br>
-                <label>Yor gender</label>
-
-        <input name="gender" id="gender"><br>
-                <label>Yor date_birth</label>
-
-        <input name="date_birth" id="date_birth"><br>
-                <label>Yor zodiac_sign</label>
-
-        <input name="zodiac_sign" id="zodiac_sign"><br>
-                <label>Yor height</label>
-
-        <input name="height" id="height"><br>
-                <label>Yor weight</label>
-
-        <input name="weight" id="weight"><br>
         <label>Password</label>
-        <input name="password" id="password">
-        <input type="submit" value="Add">
+        <input name="password" id="password"><br>
+        <input type="submit" value="Registr">
+        <a href="{{ url_for('log_user')}}">login</a>
 
     </form>
 

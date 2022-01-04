@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Anketa</title>
+</head>
+<body>
+        <form method="post">
+        <label>Yor name</label>
+        <input name="name" id="name"><br>
+        <label>last_name</label>
+        <input name="last_name" id="last_name"><br>
+        <label>gender</label>
+        <input name="gender" id="gender"><br>
+        <label>date_birth</label>
+        <input name="date_birth" id="date_birth"><br>
+        <label>zodiac_sign</label>
+        <input name="zodiac_sign" id="zodiac_sign"><br>
+        <input type="submit" value="Log in">
+    </form>
+
+        <a href="{{ url_for('form_registration')}}">Registr</a>
+</body>
+</html>
