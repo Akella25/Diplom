@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock%}</title>
+</head>
+<body>
+        {% block nav %}
+
+            <h2><nav>
+                <a href="{{ url_for('form_registration') }}">Index</a>
+                <a href="{{ url_for('log_user') }}">Login</a>
+                {% if current_user.login%}
+                    <a href="{{ url_for('logout') }}">Logaut</a>
+                    <a href="{{ url_for('my_profile') }}">My_profile</a>
+                {% endif %}
+            </nav></h2>
+        {% endblock %}
+
+        {% block form %}
+
+        {% endblock %}
+        {% block meseg %}{% endblock %}
+        {% block error %}{% endblock %}
+        {% block test %}{% endblock %}
+
+</body>
+</html>

@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Registr</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block meseg %}
     {% with messages = get_flashed_messages() %}
   {% if messages %}
     <ul class=flashes>
@@ -14,6 +10,8 @@
     </ul>
   {% endif %}
 {% endwith %}
+{% endblock %}
+{% block form %}
 <div>
     <form method="post">
 
@@ -28,15 +26,6 @@
     </form>
 
 </div>
-{%for user in users%}
-    <ul>
-        <li>
-            {{user.login}}
-        </li>
-
-    </ul>
-{%endfor%}
+{% endblock %}
 
 
-</body>
-</html>

@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
+{% extends 'base.html' %}
 
-</head>
-<body>
+{% block form %}
     <form method="post">
 
                 <label>Yor login</label>
@@ -15,8 +10,8 @@
         <input name="password" id="password"><br>
         <input type="submit" value="Log in">
         <a href="{{ url_for('form_registration')}}">Registr</a>
+        <a href="{{ url_for('anketa')}}">my profile</a>
 
     </form>
+{% endblock %}
 
-</body>
-</html>

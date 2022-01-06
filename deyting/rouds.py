@@ -1,9 +1,10 @@
 from flask import request, render_template, redirect, url_for, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, login_required, logout_user, current_user
-
+from os.path import join, dirname, realpath
 from deyting import app, db
 from deyting.models import Users, Profile
+from deyting.utils.function import piktures
 
 
 @app.route('/', methods=['POST', 'GET'])
@@ -35,8 +36,11 @@ def log_user():
 
             if user and check_password_hash(user.password_hash, password):
                 login_user(user)
-
-            return redirect(url_for('anketa'))
+                anketa = Profile.query.filter_by(profile=user.id).first()
+                if anketa:
+                    return redirect(url_for('my_profile'))
+                else:
+                    return redirect(url_for('anketa'))
     return render_template('login.html')
 
 
@@ -56,14 +60,25 @@ def anketa():
         gender = request.form['gender']
         date_birth = request.form['date_birth']
         zodiac_sign = request.form['zodiac_sign']
+        pictures = request.files.get('avatar')
         new_user = Profile(name=name, last_name=last_name, gender=gender, date_birth=date_birth,
-                         zodiac_sign=zodiac_sign, profile=current_user.id)
-
+                        zodiac_sign=zodiac_sign, profile=current_user.id)
+        if pictures:
+            new_user.add_pictures(pictures.filename)
+            path = join(dirname(realpath(__file__)), 'static', pictures.filename)
+            piktures(pictures, path)
         db.session.add(new_user)
         db.session.commit()
-
+        return render_template('my_profile.html')
             #db.session.rollback()
 
     return render_template('prof.html')
+
+
+@app.route('/my_profile', methods=['POST', 'GET'])
+@login_required
+def my_profile():
+    user = Profile.query.filter_by(profile=current_user.id).first()
+    return render_template('my_profile.html', user=user, title='profile')
 
 

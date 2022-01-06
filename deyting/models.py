@@ -3,6 +3,7 @@ from datetime import datetime
 from flask_login import UserMixin
 
 
+
 class Users(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     login = db.Column(db.String, nullable=False)
@@ -20,6 +21,13 @@ class Profile(db.Model):
     zodiac_sign = db.Column(db.String)
     profile = db.Column(db.Integer, db.ForeignKey('users.id'))
     pictures = db.Column(db.String)
+
+    def add_pictures(self, file_name):
+        self.pictures = file_name
+        db.session.add(self)
+        db.session.commit()
+
+
 
 
 @manager.user_loader
