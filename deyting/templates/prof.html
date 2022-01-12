@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Anketa</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block title %}
+                {{ title }}
+
+{% endblock %}
+{% block messeg %}
+{% endblock %}
+
+    {% block form %}
         <form method="post" enctype="multipart/form-data">
             <h3><label>Profile</label></h3>
         <label>Yor name</label>
@@ -23,6 +25,6 @@
         <input type="submit" value="Add">
     </form>
 
-        <a href="{{ url_for('form_registration')}}">Registr</a>
-</body>
-</html>
+
+
+    {% endblock %}

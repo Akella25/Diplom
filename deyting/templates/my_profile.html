@@ -4,8 +4,11 @@
 {% endblock %}
 {% block form %}
     <h1> FFFFF 1</h1>
-    {{ user.name}}<br>
-    {{ user.pictures }}
-<img src="{{ url_for('static', filename=user.pictures)}}">
+    {{ user.name}}
+    {{ user.last_name }}
+    {{ user.gender }}
+    {{ user.date_birth }}
+    {{ user.zodiac_sign }}
+<img src="{{ url_for('static', filename=user.pictures)}}" alt="">
 
 {% endblock %}

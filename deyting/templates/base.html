@@ -5,6 +5,8 @@
     <title>{% block title %}{% endblock%}</title>
 </head>
 <body>
+
+
         {% block nav %}
 
             <h2><nav>
@@ -13,16 +15,33 @@
                 {% if current_user.login%}
                     <a href="{{ url_for('logout') }}">Logaut</a>
                     <a href="{{ url_for('my_profile') }}">My_profile</a>
+                    <a href="{{ url_for('redaktor_prof') }}">Redaktor_prof</a>
+
                 {% endif %}
             </nav></h2>
         {% endblock %}
 
-        {% block form %}
+        {% block form %}{% endblock %}
 
-        {% endblock %}
-        {% block meseg %}{% endblock %}
+
+        {% block messeg %}
+
+{% endblock %}
+
+
         {% block error %}{% endblock %}
+
+
         {% block test %}{% endblock %}
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
 
 </body>
 </html>

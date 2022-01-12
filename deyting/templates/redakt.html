@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}
+                {{ title }}
+
+{% endblock %}
+{% block messeg %}
+{% endblock %}
+
+
+
+{% block form %}
+
+
+    <form method="post" enctype="multipart/form-data">
+            <h3><label>Avatar</label></h3>
+        <input name="avatar" type="file"><br>
+        <input type="submit" value="Change">
+        <img src="{{ url_for('static', filename=user.pictures)}}" alt="">
+    </form><br>
+
+    <form method="post" enctype="multipart/form-data">
+
+        <label>{{ user.name }}</label>
+        <input name="name" id="name"><br>
+        <input type="submit" value="Change">
+    </form><br>
+
+    <form method="post" enctype="multipart/form-data">
+
+        <label>{{ user.last_name }}</label>
+        <input name="last_name" id="last_name"><br>
+        <input type="submit" value="Change">
+    </form><br>
+
+
+    <form method="post" >
+        <label>{{ user.gender }}</label>
+        <input name="gender" id="gender"><br>
+        <input type="submit" value="Change">
+    </form><br>
+
+    <form method="post" >
+        <label>{{ user.date_birth }}</label>
+        <input name="date_birth" id="date_birth"><br>
+        <input type="submit" value="Change">
+    </form><br>
+
+    <form method="post" >
+        <label>{{ user.zodiac_sign }}</label>
+        <input name="zodiac_sign" id="zodiac_sign"><br>
+        <input type="submit" value="Change">
+    </form>
+    <a href="{{ url_for('delete_user', id_user=user.profile)}}"><input type="button" value="Delete"></a>
+
+
+{% endblock %}
