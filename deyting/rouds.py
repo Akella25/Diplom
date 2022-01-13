@@ -1,3 +1,5 @@
+from operator import and_
+
 from flask import request, render_template, redirect, url_for, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, login_required, logout_user, current_user
@@ -143,10 +145,42 @@ def delete_user(id_user):
 
     return redirect(url_for('form_registration'))
 
+
+@app.route('/search_user', methods=['POST', 'GET'])
+def user_search():
+    users = Profile.query.all()
+    if request.method == 'POST':
+        min_ear = int(request.form.get('min_ear'))
+        max_ear = int(request.form.get('max_ear'))
+        gender_user = request.form.get('gender_user')
+
+        #profile = Profile.query.filter(Profile.date_birth.in_(tuple(range(min_ear, max_ear)))).all()
+        profile = Profile.query.filter(and_(Profile.date_birth.in_(tuple(range(min_ear, max_ear))),
+                                            Profile.gender == gender_user)).all()
+        return render_template('search.html', users=profile)
+    return render_template('search.html', users=users)
+
+
+@app.route('/<int:id>')
+def id_profile(id):
+    user = Profile.query.filter_by(id=id).first()
+    return render_template('my_profile.html', user=user)
+
+
+
+
+
+
+
+
+
+
+
+
+
 @app.after_request
 def redirect_user(response):
     if response.status == '401 UNAUTHORIZED':
-        flash('Неверный логин')
         return redirect(url_for('log_user'))
 
     return response

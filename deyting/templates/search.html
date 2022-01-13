@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block form %}
+<form method="post">
+
+        <h4><input type="checkbox" name="gender_user" value="man">Man</h4>
+        <h4><input name="gender_user" type="checkbox" value="women">Women</h4><br>
+        <input name="min_ear" id="search"><br>
+        <input name="max_ear" id="search"><br>
+        <input type="submit" value="search">
+
+</form><br><br>
+{% endblock %}
+
+{% block search %}
+{% for user in users %}
+    <a href="{{ url_for('id_profile', id=user.id) }}"><div>
+        {{ user.name }}
+        {% if user.pictures%}
+            <img src="{{ url_for('static', filename=user.pictures)}}" >
+        {% else %}
+            <img src="{{ url_for('static', filename='lol.png')}}" >
+        {% endif %}
+
+    </div></a><hr>
+{% endfor %}
+{% endblock %}

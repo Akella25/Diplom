@@ -22,6 +22,14 @@ class Profile(db.Model):
     profile = db.Column(db.Integer, db.ForeignKey('users.id'))
     pictures = db.Column(db.String)
 
+
+    @staticmethod
+    def search_ear(min_ear, max_ear):
+        if Profile.date_birth in range(min_ear, max_ear):
+            return True
+        else:
+            return False
+
     def add_pictures(self, file_name):
         self.pictures = file_name
         db.session.add(self)

@@ -16,6 +16,7 @@
                     <a href="{{ url_for('logout') }}">Logaut</a>
                     <a href="{{ url_for('my_profile') }}">My_profile</a>
                     <a href="{{ url_for('redaktor_prof') }}">Redaktor_prof</a>
+                    <a href="{{ url_for('user_search') }}">Search</a>
 
                 {% endif %}
             </nav></h2>
@@ -30,6 +31,7 @@
 
 
         {% block error %}{% endblock %}
+        {% block search %}{% endblock %}
 
 
         {% block test %}{% endblock %}
