@@ -3,12 +3,16 @@
     {{ title }}
 {% endblock %}
 {% block form %}
-    <h1> FFFFF 1</h1>
-    {{ user.name}}
-    {{ user.last_name }}
-    {{ user.gender }}
-    {{ user.date_birth }}
-    {{ user.zodiac_sign }}
+    <h1> {{ user.name}} </h1>
 <img src="{{ url_for('static', filename=user.pictures)}}" alt="">
+    <h2>Фамилия</h2>
+    <h4>{{ user.last_name }}</h4>
+    <h2>Пол</h2>
+    <h4>{{ user.gender }}</h4>
+    <h2>Возраст</h2>
+    <h4>{{ user.date_birth }}</h4>
+    <h2>Знак зодиака</h2>
+    <h4>{{ user.zodiac_sign }}</h4><br>
+
 
 {% endblock %}

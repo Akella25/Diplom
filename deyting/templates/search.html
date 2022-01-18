@@ -2,11 +2,13 @@
 {% block form %}
 <form method="post">
 
-        <h4><input type="checkbox" name="gender_user" value="man">Man</h4>
-        <h4><input name="gender_user" type="checkbox" value="women">Women</h4><br>
+        <p><select name="gender_user">
+            <option value="Мужской" id="gender_user">Мужской</option>
+            <option value="Женский"  id="gender_user" selected>Женский</option>
+           </select></p>
         <input name="min_ear" id="search"><br>
         <input name="max_ear" id="search"><br>
-        <input type="submit" value="search">
+        <input type="submit" value="Поиск">
 
 </form><br><br>
 {% endblock %}

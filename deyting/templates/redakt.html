@@ -12,9 +12,9 @@
 
 
     <form method="post" enctype="multipart/form-data">
-            <h3><label>Avatar</label></h3>
+            <h3><label>Фото профиля</label></h3>
         <input name="avatar" type="file"><br>
-        <input type="submit" value="Change">
+        <input type="submit" value="Изменить">
         <img src="{{ url_for('static', filename=user.pictures)}}" alt="">
     </form><br>
 
@@ -22,35 +22,49 @@
 
         <label>{{ user.name }}</label>
         <input name="name" id="name"><br>
-        <input type="submit" value="Change">
+        <input type="submit" value="Изменить">
     </form><br>
 
     <form method="post" enctype="multipart/form-data">
 
         <label>{{ user.last_name }}</label>
         <input name="last_name" id="last_name"><br>
-        <input type="submit" value="Change">
+        <input type="submit" value="Изменить">
     </form><br>
 
 
     <form method="post" >
         <label>{{ user.gender }}</label>
         <input name="gender" id="gender"><br>
-        <input type="submit" value="Change">
-    </form><br>
-
-    <form method="post" >
-        <label>{{ user.date_birth }}</label>
-        <input name="date_birth" id="date_birth"><br>
-        <input type="submit" value="Change">
-    </form><br>
-
-    <form method="post" >
-        <label>{{ user.zodiac_sign }}</label>
-        <input name="zodiac_sign" id="zodiac_sign"><br>
-        <input type="submit" value="Change">
+        <input type="submit" value="Изменить">
     </form>
-    <a href="{{ url_for('delete_user', id_user=user.profile)}}"><input type="button" value="Delete"></a>
+
+    <form method="post" >
+            <h3>Возраст</h3>
+
+        <input type="number" size="2" name="date_birth" min="18" max="99" >
+        <input type="submit" value="Изменить">
+    </form><br>
+
+    <form method="post" >
+        <p><strong>Знак зодиака</strong></p>
+           <p><select name="zodiac_sign"><br><br>
+            <option value="Овен" id="zodiac_sign">Овен</option>
+            <option value="Телец"  id="zodiac_sign" selected>Телец</option>
+            <option value="Близнецы"  id="zodiac_sign" selected>Близнецы</option>
+            <option value="Скорпион"  id="gzodiac_sign" selected>Скорпион</option>
+            <option value="Весы"  id="zodiac_sign" selected>Весы</option>
+            <option value="Козерог"  id="zodiac_sign" selected>Козерог</option>
+            <option value="Дева"  id="zodiac_sign" selected>Дева</option>
+            <option value="Рыбы"  id="zodiac_sign" selected>Рыбы</option>
+            <option value="Стрелец"  id="zodiac_sign" selected>Стрелец</option>
+            <option value="Рак"  id="zodiac_sign" selected>Рак</option>
+            <option value="Лев"  id="zodiac_sign" selected>Лев</option>
+            <option value="Водолей"  id="zodiac_sign" selected>Водолей</option>
+               </select>
+        <input type="submit" value="Изменить">
+    </form>
+    <a href="{{ url_for('delete_user', id_user=user.profile)}}"><input type="button" value="Удалить страницу"></a>
 
 
 {% endblock %}

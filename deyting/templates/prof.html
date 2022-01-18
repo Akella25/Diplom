@@ -8,22 +8,43 @@
 
     {% block form %}
         <form method="post" enctype="multipart/form-data">
-            <h3><label>Profile</label></h3>
-        <label>Yor name</label>
+            <h3><label>Заполните профиль</label></h3>
+        <label>Ваше имя</label><br>
         <input name="name" id="name"><br>
-        <label>last_name</label>
+        <label>Фамилия</label><br>
         <input name="last_name" id="last_name"><br>
-        <label>gender</label>
-        <input name="gender" id="gender"><br>
-        <label>date_birth</label>
-        <input name="date_birth" id="date_birth"><br>
-        <label>zodiac_sign</label>
-        <input name="zodiac_sign" id="zodiac_sign"><br>
+            <p><strong>Ваш пол</strong></p>
+           <p><select name="gender">
+            <option value="Мужской" id="gender">Мужской</option>
+            <option value="Женский"  id="gender" selected>Женский</option>
+           </select></p>
+        <label>Возраст</label><br>
+{#        <input name="date_birth" id="date_birth"><br>#}
+            <p><input type="number" size="2" name="date_birth" min="18" max="99" value="18"></p>
+{#        <label>Знак зодиака</label><br>#}
+{#        <input name="zodiac_sign" id="zodiac_sign"><br>#}
 
-            <h3><label>Avatar</label></h3>
-        <input name="avatar" type="file"><br>
-        <input type="submit" value="Add">
-    </form>
+            <p><strong>Знак зодиака</strong></p>
+           <p><select name="zodiac_sign"><br><br>
+            <option value="Овен" id="zodiac_sign">Овен</option>
+            <option value="Телец"  id="zodiac_sign" selected>Телец</option>
+            <option value="Близнецы"  id="zodiac_sign" selected>Близнецы</option>
+            <option value="Скорпион"  id="gzodiac_sign" selected>Скорпион</option>
+            <option value="Весы"  id="zodiac_sign" selected>Весы</option>
+            <option value="Козерог"  id="zodiac_sign" selected>Козерог</option>
+            <option value="Дева"  id="zodiac_sign" selected>Дева</option>
+            <option value="Рыбы"  id="zodiac_sign" selected>Рыбы</option>
+            <option value="Стрелец"  id="zodiac_sign" selected>Стрелец</option>
+            <option value="Рак"  id="zodiac_sign" selected>Рак</option>
+            <option value="Лев"  id="zodiac_sign" selected>Лев</option>
+            <option value="Водолей"  id="zodiac_sign" selected>Водолей</option>
+               </select>
+
+
+            <br><h3><label>Добавить фото</label></h3><br>
+            <input name="avatar" type="file"><br><br>
+            <input type="submit" value="Сохранить"><br><br>
+        </form>
 
 
 

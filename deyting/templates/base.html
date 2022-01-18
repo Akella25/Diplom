@@ -10,13 +10,15 @@
         {% block nav %}
 
             <h2><nav>
-                <a href="{{ url_for('form_registration') }}">Index</a>
-                <a href="{{ url_for('log_user') }}">Login</a>
+                <a href="{{ url_for('form_registration') }}">Регистрация</a>
+                <a href="{{ url_for('log_user') }}">Войти</a>
                 {% if current_user.login%}
-                    <a href="{{ url_for('logout') }}">Logaut</a>
-                    <a href="{{ url_for('my_profile') }}">My_profile</a>
-                    <a href="{{ url_for('redaktor_prof') }}">Redaktor_prof</a>
-                    <a href="{{ url_for('user_search') }}">Search</a>
+                    <a href="{{ url_for('logout') }}">Выйти</a>
+                    {% if current_user.user_id %}
+                        <a href="{{ url_for('my_profile') }}">Мой профиль</a>
+                        <a href="{{ url_for('redaktor_prof') }}">Редактировать</a>
+                        <a href="{{ url_for('user_search') }}">Поиск</a>
+                    {% endif %}
 
                 {% endif %}
             </nav></h2>
