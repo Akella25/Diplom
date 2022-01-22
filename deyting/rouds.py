@@ -163,8 +163,79 @@ def user_search():
 
 @app.route('/<int:id>')
 def id_profile(id):
+    print(id)
     user = Profile.query.filter_by(id=id).first()
     return render_template('my_profile.html', user=user)
+
+
+
+
+@app.route('/admin', methods=['POST', 'GET'])
+def login_admin():
+    if request.method == 'POST':
+        login = request.form.get('login')
+        password = request.form.get('password')
+        admin = Users.query.filter_by(login=login).first()
+
+
+        if admin and check_password_hash(admin.password_hash, password):
+            if admin.admin:
+                login_user(admin)
+            else:
+                flash('Вы не являетесь админом')
+            return redirect(url_for('admin_list'))
+
+        else:
+            flash('неверный логин или пароль')
+
+    return render_template('login.html')
+
+
+@app.route('/admin/admin_list', methods=['POST', 'GET'])
+def admin_list():
+    users = Users.query.filter_by(admin=None).all()
+
+    if request.method == 'POST':
+        profile_id = request.form.get('delete')
+        user = Users.query.filter_by(id=profile_id).first()
+        profile_del = Profile.query.filter_by(profile=profile_id).first()
+        try:
+            db.session.delete(user)
+            db.session.delete(profile_del)
+            db.session.commit()
+        except Exception as e:
+            pass
+
+
+    return render_template('admin_list.html', users=users)
+
+
+@app.route('/admin/admin_list/<int:id>', methods=['POST', 'GET'])
+@login_required
+def admin_users_list(id):
+    user = Users.query.filter_by(id=id).first()
+    if request.method == 'POST':
+        login = request.form.get('login')
+        password = request.form.get('password')
+
+        if login:
+            user.login = login
+
+        if password:
+            user.password_hash = generate_password_hash(password)
+
+        db.session.add(user)
+        db.session.commit()
+
+    return render_template('redektor.html', user=user)
+
+
+@app.route('/add_admin', methods=['POST', 'GET'])
+def add_admin():
+    admin = Users.query.filter_by(admin=True).all()
+
+
+    return render_template('admin_list.html', users=admin)
 
 
 

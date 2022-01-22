@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+
+{% block nav %}
+    <h2><nav>
+    <a href="{{ url_for('logout') }}">Выйти</a>
+    <a href="{{ url_for('admin_list') }}">Все пользователи</a>
+    </nav></h2>
+{% endblock %}
+
+{% block form %}
+<form method="post" >
+        <label>Login</label>
+        <input name="login" id="login"><br>
+        <label>Password</label>
+        <input name="password" id="password"><br>
+        <input type="submit" value="Изменить">
+    </form>
+
+{% endblock %}

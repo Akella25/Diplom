@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block nav %}
+    <h2><nav>
+    <a href="{{ url_for('logout') }}">Выйти</a>
+    <a href="{{ url_for('admin_list') }}">Все пользователи</a>
+    <a href="{{ url_for('add_admin') }}">Все админы</a>
+    </nav></h2>
+{% endblock %}
+
+{% block search %}
+
+{% for user in users %}
+    <a href="{{ url_for('admin_users_list', id=user.id) }}"><div>
+
+            {{ user.login }}
+
+            <form method="post" >
+                <input type="hidden" name="delete" value="{{ user.id }}">
+                <input type="submit" value="Удалить">
+            </form>
+
+
+
+    </div></a><hr>
+{% endfor %}
+{% endblock %}

@@ -8,6 +8,7 @@ class Users(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     login = db.Column(db.String, nullable=False)
     password_hash = db.Column(db.String(100))
+    admin = db.Column(db.Boolean)
     date_registration = db.Column(db.DateTime, default=datetime.utcnow)
     user_id = db.relationship('Profile', backref='users')
 
