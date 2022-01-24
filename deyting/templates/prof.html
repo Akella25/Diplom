@@ -2,7 +2,18 @@
 {% block title %}
                 {{ title }}
 
+
+
+
 {% endblock %}
+ {% block nav %}
+
+            <h2><nav>
+                <a href="{{ url_for('form_registration') }}">Регистрация</a>
+                <a href="{{ url_for('logout') }}">Выйти</a>
+
+            </nav></h2>
+        {% endblock %}
 {% block messeg %}
 {% endblock %}
 

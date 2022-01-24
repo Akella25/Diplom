@@ -150,12 +150,14 @@ def delete_user(id_user):
 def user_search():
     users = Profile.query.all()
     if request.method == 'POST':
-        min_ear = int(request.form.get('min_ear'))
-        max_ear = int(request.form.get('max_ear'))
+        min_ear = request.form.get('min_ear')
+        max_ear = request.form.get('max_ear')
         gender_user = request.form.get('gender_user')
 
-        #profile = Profile.query.filter(Profile.date_birth.in_(tuple(range(min_ear, max_ear)))).all()
-        profile = Profile.query.filter(and_(Profile.date_birth.in_(tuple(range(min_ear, max_ear))),
+        if gender_user:
+            profile = Profile.query.filter(Profile.gender == gender_user).all()
+        else:
+            profile = Profile.query.filter(and_(Profile.date_birth.in_(tuple(range(min_ear, max_ear))),
                                             Profile.gender == gender_user)).all()
         return render_template('search.html', users=profile)
     return render_template('search.html', users=users)
@@ -193,19 +195,23 @@ def login_admin():
 
 @app.route('/admin/admin_list', methods=['POST', 'GET'])
 def admin_list():
-    users = Users.query.filter_by(admin=None).all()
+
 
     if request.method == 'POST':
         profile_id = request.form.get('delete')
         user = Users.query.filter_by(id=profile_id).first()
         profile_del = Profile.query.filter_by(profile=profile_id).first()
+
         try:
-            db.session.delete(user)
-            db.session.delete(profile_del)
+            if user:
+                db.session.delete(user)
+            if profile_del:
+                db.session.delete(profile_del)
             db.session.commit()
         except Exception as e:
-            pass
+            flash(str(e))
 
+    users = Users.query.filter_by(admin=None).all()
 
     return render_template('admin_list.html', users=users)
 
@@ -234,20 +240,7 @@ def admin_users_list(id):
 def add_admin():
     admin = Users.query.filter_by(admin=True).all()
 
-
     return render_template('admin_list.html', users=admin)
-
-
-
-
-
-
-
-
-
-
-
-
 
 @app.after_request
 def redirect_user(response):

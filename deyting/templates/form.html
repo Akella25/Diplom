@@ -1,5 +1,15 @@
 {% extends 'base.html' %}
 
+
+
+        {% block nav %}
+
+            <h2><nav>
+                <a href="{{ url_for('form_registration') }}">Регистрация</a>
+                <a href="{{ url_for('log_user') }}">Войти</a>
+
+            </nav></h2>
+        {% endblock %}
 {% block meseg %}
 
 {% endblock %}
@@ -7,12 +17,12 @@
 <div>
     <form method="post">
 
-                <label>Yor login</label>
+                <label>Логин</label>
         <input name="login" id="login" required><br>
 
-        <label>Password</label>
+        <label>Пароль</label>
         <input type="password"  name="password" required><br>
-        <input type="submit" value="Registr">
+        <input type="submit" value="Регистрация">
 
 
     </form>

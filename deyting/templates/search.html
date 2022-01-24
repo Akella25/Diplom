@@ -1,4 +1,20 @@
 {% extends 'base.html' %}
+{% block nav %}
+
+            <h2><nav>
+
+                {% if current_user.login%}
+                    <a href="{{ url_for('logout') }}">Выйти</a>
+                    {% if current_user.user_id %}
+                        <a href="{{ url_for('my_profile') }}">Мой профиль</a>
+                        <a href="{{ url_for('redaktor_prof') }}">Редактировать</a>
+                        <a href="{{ url_for('user_search') }}">Поиск</a>
+                    {% endif %}
+
+                {% endif %}
+            </nav></h2>
+        {% endblock %}
+
 {% block form %}
 <form method="post">
 

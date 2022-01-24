@@ -6,6 +6,21 @@
 {% block messeg %}
 {% endblock %}
 
+{% block nav %}
+
+            <h2><nav>
+
+                {% if current_user.login%}
+                    <a href="{{ url_for('logout') }}">Выйти</a>
+                    {% if current_user.user_id %}
+                        <a href="{{ url_for('my_profile') }}">Мой профиль</a>
+                        <a href="{{ url_for('redaktor_prof') }}">Редактировать</a>
+                        <a href="{{ url_for('user_search') }}">Поиск</a>
+                    {% endif %}
+
+                {% endif %}
+            </nav></h2>
+        {% endblock %}
 
 
 {% block form %}
@@ -19,35 +34,28 @@
     </form><br>
 
     <form method="post" enctype="multipart/form-data">
-
+            <h3><label>Имя</label></h3>
         <label>{{ user.name }}</label>
         <input name="name" id="name"><br>
-        <input type="submit" value="Изменить">
-    </form><br>
 
-    <form method="post" enctype="multipart/form-data">
 
+
+            <h3><label>Фамилия</label></h3>
         <label>{{ user.last_name }}</label>
         <input name="last_name" id="last_name"><br>
-        <input type="submit" value="Изменить">
-    </form><br>
 
 
-    <form method="post" >
-        <label>{{ user.gender }}</label>
-        <input name="gender" id="gender"><br>
-        <input type="submit" value="Изменить">
-    </form>
 
-    <form method="post" >
+
+
             <h3>Возраст</h3>
-
+                <label>{{ user.date_birth }}</label>
         <input type="number" size="2" name="date_birth" min="18" max="99" >
-        <input type="submit" value="Изменить">
-    </form><br>
+
 
     <form method="post" >
         <p><strong>Знак зодиака</strong></p>
+        <label>{{ user.zodiac_sign }}</label>
            <p><select name="zodiac_sign"><br><br>
             <option value="Овен" id="zodiac_sign">Овен</option>
             <option value="Телец"  id="zodiac_sign" selected>Телец</option>
@@ -61,10 +69,11 @@
             <option value="Рак"  id="zodiac_sign" selected>Рак</option>
             <option value="Лев"  id="zodiac_sign" selected>Лев</option>
             <option value="Водолей"  id="zodiac_sign" selected>Водолей</option>
-               </select>
+               </select><br><br>
         <input type="submit" value="Изменить">
-    </form>
+    </form><br>
     <a href="{{ url_for('delete_user', id_user=user.profile)}}"><input type="button" value="Удалить страницу"></a>
+
 
 
 
